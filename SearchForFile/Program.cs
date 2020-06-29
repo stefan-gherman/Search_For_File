@@ -38,12 +38,14 @@ namespace SearchForFile
             watcher.Filter = filename;
 
             watcher.Changed += Watcher_Changed;
+            watcher.IncludeSubdirectories = true;
             watcher.EnableRaisingEvents = true;
         }
 
         private static void Watcher_Changed(object sender, FileSystemEventArgs e)
         {
             Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
+
         }
     }
 }
