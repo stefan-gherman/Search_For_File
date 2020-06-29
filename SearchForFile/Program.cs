@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
 
 namespace SearchForFile
 {
@@ -45,7 +46,9 @@ namespace SearchForFile
         private static void Watcher_Changed(object sender, FileSystemEventArgs e)
         {
             Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
-
+            //FileStream zipFile = @$"{e.Name}_at_{DateTime.Now.ToString().Replace(".","_").Replace(" ", "-").Replace(":","_")}.zip";
+            //var archive = ZipFile.Open(zipFile, ZipArchiveMode.Create);
+            //archive.CreateEntry(e.FullPath);
         }
     }
 }
