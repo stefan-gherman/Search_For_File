@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Folder_Main\Folder 1\" />
+    <Folder Include="Folder_Main\Folder 2\Folder 2.1\" />
+    <Folder Include="Folder_Main\Folder 3\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SearchForFile": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Folder_Main file.txt"
+    }
+  }
+}
