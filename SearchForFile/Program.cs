@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.IO.Compression;
+using System.IO.IsolatedStorage;
 
 namespace SearchForFile
 {
@@ -56,6 +57,13 @@ namespace SearchForFile
             Console.WriteLine("Filename is :" + fileName);
            using (FileStream fs = new FileStream($@"C:\Folder_Main\Archives\{fileName}", FileMode.Create))
             using(ZipArchive arch = new ZipArchive(fs, ZipArchiveMode.Create))
+            {
+                arch.CreateEntryFromFile(e.FullPath, e.Name);
+            }
+            IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForAssembly();
+            storage.CreateDirectory("MyDir");
+            using (IsolatedStorageFileStream fs = new IsolatedStorageFileStream($@"MyDir\{fileName}", FileMode.Create, storage))
+            using (ZipArchive arch = new ZipArchive(fs, ZipArchiveMode.Create))
             {
                 arch.CreateEntryFromFile(e.FullPath, e.Name);
             }
