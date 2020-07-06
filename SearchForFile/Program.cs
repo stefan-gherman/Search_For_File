@@ -46,9 +46,19 @@ namespace SearchForFile
         private static void Watcher_Changed(object sender, FileSystemEventArgs e)
         {
             Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
-            //FileStream zipFile = @$"{e.Name}_at_{DateTime.Now.ToString().Replace(".","_").Replace(" ", "-").Replace(":","_")}.zip";
-            //var archive = ZipFile.Open(zipFile, ZipArchiveMode.Create);
-            //archive.CreateEntry(e.FullPath);
+
+            if (!Directory.Exists(@"C:\Folder_Main\Archives"))
+            {
+                Directory.CreateDirectory(@"C:\Folder_Main\Archives\");
+            } 
+            
+            string fileName = Path.GetFileName(e.Name).Replace(".", "_") + DateTime.UtcNow.ToString().Replace(" ","_").Replace(":","_").Replace(".", "_") + ".zip";
+            Console.WriteLine("Filename is :" + fileName);
+           using (FileStream fs = new FileStream($@"C:\Folder_Main\Archives\{fileName}", FileMode.Create))
+            using(ZipArchive arch = new ZipArchive(fs, ZipArchiveMode.Create))
+            {
+                arch.CreateEntryFromFile(e.FullPath, e.Name);
+            }
         }
     }
 }
